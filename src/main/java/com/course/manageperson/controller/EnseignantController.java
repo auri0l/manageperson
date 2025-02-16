@@ -2,6 +2,9 @@ package com.course.manageperson.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,8 +38,8 @@ public class EnseignantController {
 	 * @return the list of {@Enseignant}. otherwise {@Code null}
 	 */
 	@GetMapping("/enseignants")
-	List<Enseignant> getEnseignants(){
-		return this.serv.getEnseignant();
+	 ResponseEntity<List<Enseignant>>  getEnseignants(){
+		return ResponseEntity.ok(this.serv.getEnseignant());
 	}
 	
 	
@@ -48,9 +51,9 @@ public class EnseignantController {
 	 * @return {@Enseignant}. otherwise {@null}
 	 */
 	@GetMapping("/enseignants/byMatricule")
-	public Enseignant getEnseignantByMatricule(@RequestParam String matricule) {
+	public  ResponseEntity<Enseignant> getEnseignantByMatricule(@RequestParam String matricule) {
 		
-		return this.serv.getEnseignantByMatricule(matricule);
+		return ResponseEntity.ok(this.serv.getEnseignantByMatricule(matricule)) ;
 	}
 	 
 	
@@ -62,9 +65,9 @@ public class EnseignantController {
 	 * @throws EnseignantNotFoundException
 	 */
 	@GetMapping("/enseignants/{idi}")
-	public Enseignant getEnseignantById(@PathVariable int idi) throws UserNotFoundException {
+	public ResponseEntity<Enseignant> getEnseignantById(@PathVariable int idi) throws UserNotFoundException {
 		
-		return this.serv.getEnseignantById(idi);
+		return ResponseEntity.ok(this.serv.getEnseignantById(idi));
 	}
 	
 	
@@ -76,9 +79,9 @@ public class EnseignantController {
 	 * @throws EnseignantNotFoundException 
 	 */
 	@DeleteMapping("/enseignants/{idi}")
-	public Enseignant deleteEnseignantById(@PathVariable int idi) throws UserNotFoundException {
+	public ResponseEntity<Enseignant> deleteEnseignantById(@PathVariable int idi) throws UserNotFoundException {
 		
-		return this.serv.deleteEnseignantById(idi);
+		return ResponseEntity.ok(this.serv.deleteEnseignantById(idi));
 	}
 	
 	
@@ -90,9 +93,9 @@ public class EnseignantController {
 	 * @return {@Enseignant} deleted.  otherwise {@null}
 	 */
 	@PostMapping("/enseignants")
-	public Enseignant saveEnseignant(@RequestBody Enseignant es) {
+	public ResponseEntity<Enseignant>  saveEnseignant(@RequestBody Enseignant es) {
 		
-		return this.serv.saveEnseignant(es);
+		return ResponseEntity.status(HttpStatus.CREATED).body(this.serv.saveEnseignant(es));
 		
 	}
 	
@@ -107,9 +110,9 @@ public class EnseignantController {
 	 * @throws EnseignantNotFoundException 
 	 */
 	@PutMapping("/enseignants/{idi}")
-	public Enseignant updateEnseignant(@PathVariable int idi,@RequestBody Enseignant es ) throws UserNotFoundException {
+	public ResponseEntity<Enseignant>  updateEnseignant(@PathVariable int idi,@RequestBody Enseignant es ) throws UserNotFoundException {
 		
-		return this.serv.updateEnseignant(idi, es);
+		return ResponseEntity.ok(this.serv.updateEnseignant(idi, es));
 	}
 
 }

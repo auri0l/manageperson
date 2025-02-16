@@ -2,6 +2,7 @@ package com.course.manageperson.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,8 +47,8 @@ public class EtudiantController {
 	 * @return the {@Etudiant}. otherwise {@null}
 	 */
 	@GetMapping("/etudiants/byName")
-	public Etudiant getEtudiantByName(@RequestParam String name) {
-		return this.service.getEtudiantByName(name) ;
+	public ResponseEntity<Etudiant> getEtudiantByName(@RequestParam String name) {
+		return ResponseEntity.ok(this.service.getEtudiantByName(name));
 	}
 	
 	/**
@@ -57,9 +58,8 @@ public class EtudiantController {
 	 * @return the {@Etudiant}. otherwise {@null}
 	 */
 	@GetMapping("/etudiants/byQuery")
-	public Etudiant getEtudiantByQuery(@RequestParam String query) {
-		
-		return this.service.getEtudiantByQuery(query) ;
+	public ResponseEntity<Etudiant> getEtudiantByQuery(@RequestParam String query) {
+		return ResponseEntity.ok(this.service.getEtudiantByQuery(query));
 	}
 	
 	/**
@@ -69,14 +69,14 @@ public class EtudiantController {
 	 * @return the {@Etudiant}. otherwise {@null}
 	 */
 	@GetMapping("/etudiants/{id}")
-	public Etudiant getEtudiantById(@PathVariable int id) {
+	public ResponseEntity<Etudiant> getEtudiantById(@PathVariable int id) {
 		Etudiant etudiant = null;
 		try {
 			etudiant = this.service.getEtudiantById(id) ;	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return etudiant;
+		return ResponseEntity.ok(etudiant);
 	}
 	
 	/**
@@ -87,9 +87,8 @@ public class EtudiantController {
 	 * @throws UserNotFoundException 
 	 */
 	@DeleteMapping("/etudiants/{id}")
-	public Etudiant deleteEtudiantById(@PathVariable int id) throws UserNotFoundException {
-		
-		return this.service.deleteEtudiantById(id) ;
+	public ResponseEntity<Etudiant> deleteEtudiantById(@PathVariable int id) throws UserNotFoundException {
+		return ResponseEntity.ok(this.service.deleteEtudiantById(id));
 	}
 	
 	/**
@@ -99,9 +98,8 @@ public class EtudiantController {
 	 * @return the {@Etudiant} created. otherwise {@null}
 	 */
 	@PostMapping("/etudiants")
-	public Etudiant saveEtudiant(@RequestBody Etudiant e) {
-		
-		return this.service.saveEtudiant(e) ;
+	public ResponseEntity<Etudiant> saveEtudiant(@RequestBody Etudiant e) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(this.service.saveEtudiant(e));
 	}
 	
 	/**
@@ -112,9 +110,8 @@ public class EtudiantController {
 	 * @return the {@Etudiant} updated. otherwise {@null}
 	 */
 	@PutMapping("/etudiants/{id}")
-	public Etudiant updateEtudiant(@PathVariable int id,@RequestBody Etudiant e ) throws UserNotFoundException {
-		
-		return this.service.updateEtudiant(id,e) ;
+	public ResponseEntity<Etudiant> updateEtudiant(@PathVariable int id,@RequestBody Etudiant e ) throws UserNotFoundException {
+		return ResponseEntity.ok(this.service.updateEtudiant(id,e));
 	}
 
 }
