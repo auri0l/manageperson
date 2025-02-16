@@ -13,6 +13,8 @@ import jakarta.persistence.Table;
 @Table(name = "ENSEIGNANT")
 public class Enseignant {
 	
+
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="ENS_ID")

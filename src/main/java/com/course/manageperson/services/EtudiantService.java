@@ -10,6 +10,12 @@ import com.course.manageperson.entities.Etudiant;
 @Service
 public class EtudiantService implements IEtudiantService {
 	
+	/**
+	 * Create list of student
+	 * 
+	 * @return the list of student
+	 */
+	
 	List<Etudiant> etudiants = new ArrayList<>();
 
 	public EtudiantService() {
@@ -19,12 +25,29 @@ public class EtudiantService implements IEtudiantService {
 		this.etudiants.add(new Etudiant(3,"bro", "CMUDS-003", "info", "FS", 3));
 	}
 
+	
+	
+
+	/**
+	 * Get all {@Etudiant}.
+	 * 
+
+	 * @return list of {@Etudiant}. otherwise {@null}
+	 */
 	@Override
 	public List<Etudiant> getEtudiants() {
 		
 		return this.etudiants;
 	}
 
+	
+
+	/**
+	 * Get {@Etudiant} by name.
+	 * 
+	 * @param name - The student name
+	 * @return the {@Etudiant}. otherwise {@null}
+	 */
 	@Override
 	public Etudiant getEtudiantByName(String name) {
 		
@@ -37,7 +60,14 @@ public class EtudiantService implements IEtudiantService {
 		}
 		return etudiant;
 	}
-
+	
+	
+	/**
+	 * Get {@Etudiant} by id.
+	 * 
+	 * @param id - The student id
+	 * @return the {@Etudiant}. otherwise {@null}
+	 */
 	@Override
 	public Etudiant getEtudiantById(int id) {
 		
@@ -52,6 +82,14 @@ public class EtudiantService implements IEtudiantService {
 		return etudiant;	
 	}
 
+	
+	
+	/**
+	 * Delete {@Etudiant} by id.
+	 * 
+	 * @param id - The student id
+	 * @return the {@Etudiant} deleted. otherwise {@null}
+	 */
 	public Etudiant deleteEtudiantById(int id) {
 		Etudiant e = null;
 		int pos = this.getPositionOfEtudiant(id);
@@ -63,6 +101,14 @@ public class EtudiantService implements IEtudiantService {
 		return null;
 	}
 	
+	
+	
+	/**
+	 * Get etudiant position
+	 * 
+	 * @param id - The student id
+	 * @return the student position
+	 */
 	private int getPositionOfEtudiant(int id) {
 		int pos = -1;
 		int i = -1;
@@ -75,6 +121,13 @@ public class EtudiantService implements IEtudiantService {
 		return pos;	
 	}
 
+	
+	/**
+	 * Create new {@Etudiant}.
+	 * 
+	 * @param e - The student
+	 * @return the {@Etudiant} created. otherwise {@null}
+	 */
 	public Etudiant saveEtudiant(Etudiant e) {
 		int totalElement = this.etudiants.size();
 		
@@ -85,6 +138,14 @@ public class EtudiantService implements IEtudiantService {
 		return e;
 	}
 
+	
+	/**
+	 * Update {@Etudiant}.
+	 * 
+	 * @param id - The student id
+	 * @param e - The student
+	 * @return the {@Etudiant} updated. otherwise {@null}
+	 */
 	public Etudiant updateEtudiant(int id, Etudiant e) {
 		int post = this.getPositionOfEtudiant(id);
 		if (post != -1) {
@@ -95,6 +156,15 @@ public class EtudiantService implements IEtudiantService {
 			}
 		}
 		
+		return null;
+	}
+
+
+
+
+	@Override
+	public Etudiant getEtudiantByQuery(String query) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }

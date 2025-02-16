@@ -3,15 +3,16 @@ package com.course.manageperson.services;
 import java.util.List;
 
 import com.course.manageperson.entities.Etudiant;
+import com.course.manageperson.exception.UserNotFoundException;
 ;public interface IEtudiantService {
 	
 	public List<Etudiant> getEtudiants();
 	public Etudiant getEtudiantByName(String name);
-	public Etudiant getEtudiantById(int id);
-	public Etudiant deleteEtudiantById(int id);
+	public Etudiant getEtudiantById(int id) throws UserNotFoundException;
+	public Etudiant deleteEtudiantById(int id) throws Exception;
 	public Etudiant saveEtudiant(Etudiant e);
-	public Etudiant updateEtudiant(int id, Etudiant e);
-	
+	public Etudiant updateEtudiant(int id, Etudiant e) throws Exception;
+	public Etudiant getEtudiantByQuery(String query);
 	
 	/*  "id": 0,
     "nom": "SOH",
